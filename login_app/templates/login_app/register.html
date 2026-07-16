@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block contect %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+
+        <div class="col-lg-5 col-md-7">
+
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+                <div class="bg-success text-white text-center py-4">
+                    <h2 class="fw-bold mb-1">ثبت‌نام</h2>
+                    <p class="mb-0">حساب کاربری خود را ایجاد کنید</p>
+                </div>
+
+                <div class="card-body p-4 bg-white">
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        {% if form.errors %}
+                        <div class="alert alert-danger rounded-3">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div>{{ error }}</div>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                نام کاربری
+                            </label>
+                            {{ form.username }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                رمز عبور
+                            </label>
+                            {{ form.password1 }}
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                تکرار رمز عبور
+                            </label>
+                            {{ form.password2 }}
+                        </div>
+
+                        <button class="btn btn-success w-100 py-3 rounded-pill fw-bold shadow-sm">
+                            ثبت‌نام
+                        </button>
+
+                    </form>
+
+                    <hr class="my-4">
+
+                    <p class="text-center mb-0">
+                        قبلاً حساب ساخته‌ای؟
+                        <a href="{% url 'login' %}" class="text-success fw-bold text-decoration-none">
+                            وارد شو
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<style>
+.card{
+    border-radius:20px;
+}
+
+.form-control{
+    height:50px;
+    border-radius:12px;
+    border:1px solid #ced4da;
+    transition:.3s;
+}
+
+.form-control:focus{
+    border-color:#198754;
+    box-shadow:0 0 0 .2rem rgba(25,135,84,.2);
+}
+
+.btn-success{
+    transition:.3s;
+}
+
+.btn-success:hover{
+    transform:translateY(-2px);
+}
+
+body{
+    background:#ffffff;
+}
+</style>
+
+{% endblock %}

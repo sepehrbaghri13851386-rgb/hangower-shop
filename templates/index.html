@@ -1,0 +1,424 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contect %}
+{% load humanize %}
+
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="جستجو ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Start Banner Hero -->
+    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="{% static 'assets/img/IMG_8199.png' %}" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left align-self-center">
+                                <h1 class="h1 text-success"><b></b> تیشرت</h1>
+                                <h3 class="h2">راحتی و استایل در یک تیشرت</h3>
+                                <p>
+                                    تیشرت‌های هنگ‌اور شاپ از پارچه‌ی نخی نرم و باکیفیت دوخته شده‌اند و برای استفاده‌ی روزمره و ورزشی مناسب‌اند.
+                                    طرح‌های ساده و شیک، رنگ‌بندی متنوع و دوام بالا در شست‌وشو از ویژگی‌های این محصول است.
+                                    همین حالا از میان جدیدترین مدل‌ها انتخاب کن و به سبد خریدت اضافه کن.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="{% static 'assets/img/IMG_20260515_154535_770.png' %}" alt="{{shopes.title }}">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">شلوار</h1>
+                                <h3 class="h2">جنس مرغوب، دوخت استاندارد</h3>
+                                <p>
+                                    شلوارهای هنگ‌اور شاپ با پارچه‌ی مقاوم و اندازه‌بندی دقیق طراحی شده‌اند تا در هر موقعیتی، از کار روزمره تا پیاده‌روی، احساس راحتی کنید.
+                                    <strong>ارسال به سراسر کشور</strong> و امکان تعویض سایز نیز برای این محصول فعال است.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="{% static 'assets/img/bracelets_no_bg.png' %}" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">اکسسوری</h1>
+                                <h3 class="h2">جزئیاتی که استایلت را کامل می‌کنند</h3>
+                                <p>
+                                    از دستبند و گردنبند گرفته تا کلاه و کیف، مجموعه‌ی اکسسوری‌های ما با طراحی مینیمال و کیفیت ساخت بالا انتخاب شده‌اند
+                                    تا هر ظاهری را خاص‌تر کنند.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    </div>
+    <!-- End Banner Hero -->
+
+
+    <!-- Start Categories of The Month -->
+    <section class="container py-5">
+        <div class="row text-center pt-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">اکسسوری‌های محبوب</h1>
+                <p>
+                    مجموعه‌ای منتخب از دستبند، گردنبند و لوازم جانبی با طراحی ساده و شیک،
+                    مناسب برای هدیه دادن یا تکمیل استایل روزمره‌ی شما.
+                </p>
+            </div>
+        </div>
+
+        <style>
+            .cat-card {
+                min-width: 200px;
+                max-width: 200px;
+                text-align: center;
+                background: #fff;
+                border-radius: 16px;
+                padding: 24px 16px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .cat-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+            }
+            .cat-card img {
+                width: 110px;
+                height: 110px;
+                object-fit: cover;
+            }
+            .cat-card .price {
+                color: #198754;
+                font-weight: 700;
+                display: block;
+                margin-bottom: 10px;
+            }
+        </style>
+
+        <div class="position-relative mt-3">
+            <button id="catSliderPrev" class="btn btn-success position-absolute top-50 translate-middle-y z-3 rounded-circle shadow"
+                    style="width:46px;height:46px;left:-20px;">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <div id="categorySlider" style="
+                display: flex;
+                gap: 24px;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                cursor: grab;
+                padding: 16px 8px 28px;
+                scrollbar-width: none;
+            ">
+                {% for item in acstori %}
+                <div class="cat-card">
+                    <img src="{{ item.image.url }}" class="rounded-circle img-fluid border" alt="{{ item.title }}">
+                    <h2 class="h5 text-center mt-3 mb-2">{{ item.title }}</h2>
+                    <span class="price">{{ item.gheymat|intcomma }} تومان</span>
+                    <form method="GET" action="{% url 'add_to_cart' 'acstori' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-shopping-cart me-1"></i>افزودن به سبد
+                        </button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+
+            <button id="catSliderNext" class="btn btn-success position-absolute top-50 translate-middle-y z-3 rounded-circle shadow"
+                    style="width:46px;height:46px;right:-20px;">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+    <!-- End Categories of The Month -->
+
+
+    <!-- Start Featured Product Slider -->
+    <section class="bg-light">
+        <div class="container py-5">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">جدیدترین ها</h1>
+                    <p>
+                        تازه‌ترین محصولات هنگ‌اور شاپ را ببینید؛ از پوشاک روزمره تا اکسسوری،
+                        همه با کیفیت تضمینی و قیمت مناسب.
+                    </p>
+                </div>
+            </div>
+
+            <div class="position-relative">
+                <button id="sliderPrev" class="btn btn-success position-absolute top-50 translate-middle-y z-3 rounded-circle shadow"
+                        style="width:46px;height:46px;left:-20px;">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <style>
+                    .prod-card {
+                        min-width: 260px;
+                        max-width: 260px;
+                        border-radius: 18px;
+                        overflow: hidden;
+                        background: #fff;
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+                        position: relative;
+                    }
+                    .prod-card:hover {
+                        transform: translateY(-8px);
+                        box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+                    }
+                    .prod-card .img-wrap {
+                        position: relative;
+                        overflow: hidden;
+                        height: 230px;
+                    }
+                    .prod-card .img-wrap img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        transition: transform 0.4s ease;
+                    }
+                    .prod-card:hover .img-wrap img {
+                        transform: scale(1.07);
+                    }
+                    .prod-card .img-wrap .overlay {
+                        position: absolute;
+                        inset: 0;
+                        background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%);
+                    }
+                    .prod-card .badge-new {
+                        position: absolute;
+                        top: 14px;
+                        left: 14px;
+                        background: #198754;
+                        color: #fff;
+                        font-size: 0.72rem;
+                        font-weight: 700;
+                        padding: 4px 10px;
+                        border-radius: 20px;
+                        letter-spacing: 0.05em;
+                        text-transform: uppercase;
+                    }
+                    .prod-card .wishlist-btn {
+                        position: absolute;
+                        top: 12px;
+                        right: 12px;
+                        background: rgba(255,255,255,0.9);
+                        border: none;
+                        border-radius: 50%;
+                        width: 34px;
+                        height: 34px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #e74c3c;
+                        cursor: pointer;
+                        transition: background 0.2s;
+                    }
+                    .prod-card .wishlist-btn:hover { background: #fff; }
+                    .prod-card .card-info {
+                        padding: 16px 18px 18px;
+                    }
+                    .prod-card .card-info .title {
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: #1a1a1a;
+                        text-decoration: none;
+                        display: block;
+                        margin-bottom: 6px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .prod-card .card-info .desc {
+                        font-size: 0.82rem;
+                        color: #888;
+                        margin-bottom: 12px;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                    }
+                    .prod-card .card-footer-row {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                    .prod-card .price {
+                        font-size: 1.05rem;
+                        font-weight: 800;
+                        color: #198754;
+                    }
+                    .prod-card .btn-cart {
+                        background: #198754;
+                        color: #fff;
+                        border: none;
+                        border-radius: 30px;
+                        padding: 6px 16px;
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        transition: background 0.2s, transform 0.2s;
+                    }
+                    .prod-card .btn-cart:hover {
+                        background: #146c43;
+                        transform: scale(1.05);
+                    }
+                </style>
+
+                <div id="productSlider" style="
+                    display: flex;
+                    gap: 24px;
+                    overflow-x: auto;
+                    scroll-behavior: smooth;
+                    cursor: grab;
+                    padding: 16px 8px 28px;
+                    scrollbar-width: none;
+                ">
+                    {% for item in shopes %}
+                    <div class="prod-card">
+                        <div class="img-wrap">
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                            <div class="overlay"></div>
+                            <span class="badge-new">جدید</span>
+                        </div>
+                        <div class="card-info">
+                            <a href="javascript:void(0)" class="title">{{ item.title }}</a>
+                            <p class="desc">{{ item.discribshen }}</p>
+                            <div class="card-footer-row">
+                                <span class="price">{{ item.gheymat|intcomma }} تومان</span>
+                                <form method="GET" action="{% url 'add_to_cart' 'shop' item.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn-cart">
+                                        <i class="fa fa-shopping-cart me-1"></i>افزودن
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <button id="sliderNext" class="btn btn-success position-absolute top-50 translate-middle-y z-3 rounded-circle shadow"
+                        style="width:46px;height:46px;right:-20px;">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- End Featured Product Slider -->
+
+    <!-- Toast notification -->
+    <div id="cartToast" style="
+        position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+        background: #198754; color: #fff; padding: 14px 28px;
+        border-radius: 30px; font-weight: 600; box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        display: none; z-index: 9999; font-size: 0.95rem;
+        transition: opacity 0.3s ease;
+    ">
+        <i class="fa fa-check-circle me-2"></i><span id="toastMsg"></span>
+    </div>
+
+    <script>
+        function addToCart(productId, btn) {
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i>...';
+
+            fetch(`/cart/add/${productId}/`, {
+                method: 'GET',
+                headers: { 'x-requested-with': 'XMLHttpRequest' }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    // آپدیت عدد سبد توی navbar
+                    const badge = document.getElementById('cart-count-badge');
+                    if (badge) {
+                        badge.textContent = data.cart_count;
+                        badge.style.display = 'inline';
+                    }
+                    // نمایش toast
+                    const toast = document.getElementById('cartToast');
+                    document.getElementById('toastMsg').textContent = data.message;
+                    toast.style.display = 'block';
+                    setTimeout(() => { toast.style.display = 'none'; }, 2500);
+                }
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa fa-shopping-cart me-1"></i>افزودن';
+            });
+        }
+
+        function initSlider(sliderId, prevBtnId, nextBtnId) {
+            const slider = document.getElementById(sliderId);
+            if (!slider) return;
+            document.getElementById(nextBtnId).addEventListener('click', () => {
+                slider.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+            document.getElementById(prevBtnId).addEventListener('click', () => {
+                slider.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+            let isDown = false, startX, scrollLeft;
+            slider.addEventListener('mousedown', e => {
+                isDown = true;
+                slider.style.cursor = 'grabbing';
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+            slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
+            slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
+            slider.addEventListener('mousemove', e => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
+            });
+        }
+
+        initSlider('productSlider', 'sliderPrev', 'sliderNext');
+        initSlider('categorySlider', 'catSliderPrev', 'catSliderNext');
+    </script>
+
+{% endblock %}

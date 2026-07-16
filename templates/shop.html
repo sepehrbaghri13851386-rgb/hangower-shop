@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contect %}
+{% load humanize %}
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{% url 'shop' %}" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="جستجو ..." value="{{ query|default:'' }}">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <div class="row">
+
+            <div class="col-lg-3">
+                <h1 class="h2 pb-4">دسته‌بندی‌ها</h1>
+                <ul class="list-unstyled templatemo-accordion">
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            جنسیت
+                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul class="collapse show list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#">مردانه</a></li>
+                            <li><a class="text-decoration-none" href="#">زنانه</a></li>
+                        </ul>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            حراج
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#">ورزشی</a></li>
+                            <li><a class="text-decoration-none" href="#">لوکس</a></li>
+                        </ul>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            محصول
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseThree" class="collapse list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#">کیف</a></li>
+                            <li><a class="text-decoration-none" href="#">ژاکت</a></li>
+                            <li><a class="text-decoration-none" href="#">عینک آفتابی</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-inline shop-top-menu pb-3 pt-1">
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none mr-3" href="#">همه</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none mr-3" href="#">مردانه</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none" href="#">زنانه</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 pb-4">
+                        <form method="get" action="{% url 'shop' %}" class="d-flex">
+                            <input type="text" name="q" class="form-control" placeholder="جستجوی محصول ..." value="{{ query|default:'' }}">
+                            <button type="submit" class="btn btn-success ms-2">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <style>
+                        .shop-prod-card {
+                            border-radius: 18px;
+                            overflow: hidden;
+                            background: #fff;
+                            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+                            transition: transform 0.3s ease, box-shadow 0.3s ease;
+                        }
+                        .shop-prod-card:hover {
+                            transform: translateY(-8px);
+                            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+                        }
+                        .shop-prod-card .img-wrap {
+                            position: relative;
+                            overflow: hidden;
+                            height: 230px;
+                        }
+                        .shop-prod-card .img-wrap img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform 0.4s ease;
+                        }
+                        .shop-prod-card:hover .img-wrap img {
+                            transform: scale(1.07);
+                        }
+                        .shop-prod-card .card-info {
+                            padding: 16px 18px 18px;
+                        }
+                        .shop-prod-card .title {
+                            font-size: 1rem;
+                            font-weight: 700;
+                            color: #1a1a1a;
+                            text-decoration: none;
+                            display: block;
+                            margin-bottom: 6px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                        .shop-prod-card .desc {
+                            font-size: 0.82rem;
+                            color: #888;
+                            margin-bottom: 12px;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                        }
+                        .shop-prod-card .card-footer-row {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
+                        .shop-prod-card .price {
+                            font-size: 1.05rem;
+                            font-weight: 800;
+                            color: #198754;
+                        }
+                        .shop-prod-card .btn-cart {
+                            background: #198754;
+                            color: #fff;
+                            border: none;
+                            border-radius: 30px;
+                            padding: 6px 16px;
+                            font-size: 0.8rem;
+                            font-weight: 600;
+                            text-decoration: none;
+                            transition: background 0.2s, transform 0.2s;
+                        }
+                        .shop-prod-card .btn-cart:hover {
+                            background: #146c43;
+                            transform: scale(1.05);
+                            color: #fff;
+                        }
+                    </style>
+                </div>
+
+                <div class="position-relative">
+                    {% if query and not kharid_pages %}
+                    <p class="text-center text-muted py-5">محصولی با «{{ query }}» پیدا نشد.</p>
+                    {% endif %}
+
+                    {% if kharid_pages|length > 1 %}
+                    <button id="shopSliderPrev" class="btn btn-success position-absolute top-50 translate-middle-y z-3 rounded-circle shadow"
+                            style="width:46px;height:46px;left:-20px;">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    {% endif %}
+
+                    <div id="shopProductCarousel" class="carousel slide" data-bs-ride="false">
+                        <div class="carousel-inner">
+                            {% for page in kharid_pages %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <div class="row">
+                                    {% for item in page %}
+                                    <div class="col-md-4 mb-4">
+                                        <div class="shop-prod-card">
+                                            <div class="img-wrap">
+                                                <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                                            </div>
+                                            <div class="card-info">
+                                                <a href="#" class="title">{{ item.title }}</a>
+                                                <p class="desc">{{ item.discribshen }}</p>
+                                                <div class="card-footer-row">
+                                                    <span class="price">{{ item.gheymat|intcomma }} تومان</span>
+                                                    <a href="{% url 'add_to_cart' 'shop' item.id %}" class="btn-cart">
+                                                        <i class="fa fa-shopping-cart me-1"></i>افزودن
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {% if kharid_pages|length > 1 %}
+                    <button id="shopSliderNext" class="btn btn-success position-absolute top-50 translate-middle-y z-3 rounded-circle shadow"
+                            style="width:46px;height:46px;right:-20px;">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    {% endif %}
+                </div>
+
+                <script>
+                    (function() {
+                        var carouselEl = document.getElementById('shopProductCarousel');
+                        if (!carouselEl) return;
+                        var carousel = new bootstrap.Carousel(carouselEl, { ride: false, wrap: true });
+                        var prevBtn = document.getElementById('shopSliderPrev');
+                        var nextBtn = document.getElementById('shopSliderNext');
+                        if (prevBtn) prevBtn.addEventListener('click', function() { carousel.prev(); });
+                        if (nextBtn) nextBtn.addEventListener('click', function() { carousel.next(); });
+                    })();
+                </script>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Content -->
+
+    <!-- Start Brands -->
+    <section class="bg-light py-5">
+        <div class="container my-4">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">برندهای ما</h1>
+                    <p>همکاری با معتبرترین برندهای پوشاک و کفش، تضمینی برای اصالت و کیفیت محصولات است.</p>
+                </div>
+                <div class="col-lg-9 m-auto tempaltemo-carousel">
+                    <div class="row d-flex flex-row">
+                        <div class="col-1 align-self-center">
+                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
+                                <i class="text-light fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example" data-bs-ride="carousel">
+                                <div class="carousel-inner product-links-wap" role="listbox">
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            <div class="col-3 p-md-5"><a href="#"><img class="img-fluid brand-img" src="{% static 'assets/img/brand_01.png' %}" alt="لوگوی برند"></a></div>
+                                            <div class="col-3 p-md-5"><a href="#"><img class="img-fluid brand-img" src="{% static 'assets/img/brand_02.png' %}" alt="لوگوی برند"></a></div>
+                                            <div class="col-3 p-md-5"><a href="#"><img class="img-fluid brand-img" src="{% static 'assets/img/brand_03.png' %}" alt="لوگوی برند"></a></div>
+                                            <div class="col-3 p-md-5"><a href="#"><img class="img-fluid brand-img" src="{% static 'assets/img/brand_04.png' %}" alt="لوگوی برند"></a></div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <div class="col-3 p-md-5"><a href="#"><img class="img-fluid brand-img" src="{% static 'assets/img/brand_01.png' %}" alt="لوگوی برند"></a></div>
+                                            <div class="col-3 p-md-5"><a href="#"><img class="img-fluid brand-img" src="{% static 'assets/img/brand_02.png' %}" alt="لوگوی برند"></a></div>
+                                            <div class="col-3 p-md-5"><a href="#"><img class="img-fluid brand-img" src="{% static 'assets/img/brand_03.png' %}" alt="لوگوی برند"></a></div>
+                                            <div class="col-3 p-md-5"><a href="#"><img class="img-fluid brand-img" src="{% static 'assets/img/brand_04.png' %}" alt="لوگوی برند"></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1 align-self-center">
+                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
+                                <i class="text-light fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

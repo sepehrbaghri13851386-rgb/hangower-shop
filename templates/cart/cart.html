@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contect %}
+{% load humanize %}
+<style>
+    .cart-page { background: #f8f9fa; min-height: 60vh; padding: 50px 0; }
+    .cart-table { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+    .cart-table img { width: 80px; height: 80px; object-fit: cover; border-radius: 10px; }
+    .cart-summary { background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+    .remove-btn { color: #dc3545; background: none; border: none; font-size: 1.1rem; cursor: pointer; transition: transform 0.2s; }
+    .remove-btn:hover { transform: scale(1.2); }
+    .empty-cart { text-align: center; padding: 80px 20px; }
+    .empty-cart i { font-size: 5rem; color: #dee2e6; margin-bottom: 20px; }
+</style>
+
+<div class="cart-page">
+    <div class="container">
+        <h2 class="mb-4 fw-bold">🛒 سبد خرید</h2>
+
+        {% if items %}
+        <div class="row g-4">
+            <!-- جدول محصولات -->
+            <div class="col-lg-8">
+                <div class="cart-table">
+                    <table class="table mb-0 align-middle">
+                        <thead style="background:#f1f5f1;">
+                            <tr>
+                                <th class="p-3">محصول</th>
+                                <th class="p-3">قیمت</th>
+                                <th class="p-3">تعداد</th>
+                                <th class="p-3">جمع</th>
+                                <th class="p-3"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <td class="p-3 d-flex align-items-center gap-3">
+                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+                                    <span class="fw-semibold">{{ item.product.title }}</span>
+                                </td>
+                                <td class="p-3 text-muted">{{ item.product.gheymat|intcomma }} تومان</td>
+                                <td class="p-3">
+                                    <span class="badge bg-success px-3 py-2 fs-6">{{ item.quantity }}</span>
+                                </td>
+                                <td class="p-3 fw-bold text-success">{{ item.get_subtotal }} تومان</td>
+                                <td class="p-3">
+                                    <a href="{% url 'remove_from_cart' item.id %}">
+                                        <button class="remove-btn"><i class="fa fa-trash"></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- خلاصه سفارش -->
+            <div class="col-lg-4">
+                <div class="cart-summary">
+                    <h5 class="fw-bold mb-4">خلاصه سفارش</h5>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-muted">تعداد کل:</span>
+                        <span class="fw-bold">{{ cart.get_count }} عدد</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="fw-bold fs-5">مجموع:</span>
+                        <span class="fw-bold fs-5 text-success">{{ cart.get_total }} تومان</span>
+                    </div>
+                    <a href="#" class="btn btn-success w-100 py-3 rounded-pill fw-bold fs-5">
+                        <i class="fa fa-credit-card me-2"></i>پرداخت
+                    </a>
+                    <a href="/" class="btn btn-outline-secondary w-100 py-2 rounded-pill mt-3">
+                        ادامه خرید
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="empty-cart">
+            <i class="fa fa-shopping-cart"></i>
+            <h4 class="text-muted">سبد خرید شما خالی است</h4>
+            <a href="/" class="btn btn-success px-5 py-3 rounded-pill mt-3 fw-bold">
+                رفتن به فروشگاه
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
