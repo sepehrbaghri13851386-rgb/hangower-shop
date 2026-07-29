@@ -24,13 +24,14 @@ class CartItem(models.Model):
     product = GenericForeignKey('content_type', 'object_id')
     quantity = models.PositiveIntegerField(default=1)
 
+    def get_subtotal(self):
+        if self.product:
+            return self.product.gheymat * self.quantity
+        return 0
+
     # class Meta:
     #     unique_together = ('cart', 'content_type', 'object_id')
 def __str__(self):
     if self.product:
          return f"{self.product.title} x {self.quantity}"
     return "Deleted Product"
-def get_subtotal(self):
-    if self.product:
-        return self.product.gheymat * self.quantity
-    return 0
