@@ -4,16 +4,16 @@ from django.contrib.contenttypes.models import ContentType
 
 from shop_app.models import Shop
 from acastori_app.models import acstori# آدرس اپ acstori رو با آدرس واقعی پروژه‌ات جایگزین کن
-
+from kharid_app.models import kharid
 from .models import Cart, CartItem
 
 
 # نگاشت اسم رشته‌ای که توی URL/تمپلیت می‌فرستیم، به مدل واقعی
 MODEL_MAP = {
     'shop': Shop,
+    'kharid': kharid,
     'acstori': acstori,
 }
-
 
 def get_or_create_cart(request):
     if not request.session.session_key:

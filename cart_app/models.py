@@ -26,10 +26,11 @@ class CartItem(models.Model):
 
     # class Meta:
     #     unique_together = ('cart', 'content_type', 'object_id')
-
-    def __str__(self):
-        return f"{self.product.title} x {self.quantity}"
-
-    def get_subtotal(self):
+def __str__(self):
+    if self.product:
+         return f"{self.product.title} x {self.quantity}"
+    return "Deleted Product"
+def get_subtotal(self):
+    if self.product:
         return self.product.gheymat * self.quantity
-
+    return 0
